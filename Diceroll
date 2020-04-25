@@ -1,0 +1,78 @@
+function genRandom(fromVal, toVal) {
+	"use strict";
+	var rndNumber;
+	rndNumber = Math.floor(Math.random() * toVal) + fromVal;
+	return rndNumber;
+}
+function genCoinArray(coinArray, flipCount) {
+	"use strict";
+	var rnd, val, i, myRnd;
+	for (i = 0; i < flipCount; i += 1) {
+		rnd = genRandom(1, 6);
+		switch (rnd) {
+		case 1:
+			val = "countone";
+			break;
+		case 2:
+			val = "counttwo";
+			break;
+		case 3:
+			val = "countthree";
+			break;
+		case 4:
+			val = "countfour";
+			break;
+		case 5:
+			val = "countfive";
+			break;
+		case 6:
+			val = "countsix";
+			break;
+		default:
+			val = "Error: Out of range " + myRnd;
+		}
+		coinArray.push(val);
+	}
+}
+function displayCoinTossCounts(coinArray) {
+	"use strict";
+	var one = 0, two = 0, three = 0, four = 0, five = 0, six = 0, defaultVal = 0, i, myVal;
+	for (i = 0; coinArray.length > 0; i += 1) {
+		myVal = coinArray.pop();
+		switch (myVal) {
+		case "countone":
+			one += 1;
+			break;
+		case "counttwo":
+			two += 1;
+			break;
+		case "countthree":
+			three += 1;
+			break;
+		case "countfour":
+			four += 1;
+			break;
+		case "countfive":
+			five += 1;
+			break;
+		case "countsix":
+			six += 1;
+			break;
+		default:
+			defaultVal += 1;
+		}
+	}
+	window.console.log("count one: " + one);
+	window.console.log("count two: " + two);
+	window.console.log("count three: " + three);
+	window.console.log("count four: " + four);
+	window.console.log("count five: " + five);
+	window.console.log("count six: " + six);
+}
+function main() {
+	"use strict";
+	var myArray = [];
+	genCoinArray(myArray, 200);
+	window.console.log(myArray);
+	displayCoinTossCounts(myArray);
+}
